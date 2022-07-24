@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Pipes
   layers:
   - Default
   - TransparentFX
@@ -46,4 +47,7 @@ TagManager:
     locked: 0
   - name: Bricks
     uniqueID: 2422145417
+    locked: 0
+  - name: Pipes
+    uniqueID: 1459255555
     locked: 0
