@@ -39,15 +39,24 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Background
-    uniqueID: 584456495
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Bricks
+  - name: Background
+    uniqueID: 584456495
+    locked: 0
+  - name: Powerups
     uniqueID: 2422145417
     locked: 0
-  - name: Pipes
+  - name: Enemies
     uniqueID: 1459255555
+    locked: 0
+  - name: Mario
+    uniqueID: 954223055
+    locked: 0
+  - name: Pipes
+    uniqueID: 1076651019
+    locked: 0
+  - name: Blocks
+    uniqueID: 1763305947
     locked: 0
