@@ -3,14 +3,18 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
 
     private new Rigidbody2D rigidbody;
+    private new Camera camera;
 
     private float inputAxis;
     private Vector2 velocity;
+
+    private float offset = 0.5f;
 
     [SerializeField] private float moveSpeed = 8f;
 
     private void Awake() {
         rigidbody = GetComponent<Rigidbody2D>();
+        camera = Camera.main;
     }
 
     private void Update() {
@@ -26,6 +30,9 @@ public class PlayerMovement : MonoBehaviour {
         Vector2 position = rigidbody.position;
         position += velocity * Time.deltaTime;
 
+        Vector2 leftEdge = camera.ScreenToWorldPoint(Vector2.zero);
+        Vector2 rightEdge = camera.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+        position.x = Mathf.Clamp(position.x, leftEdge.x + offset, rightEdge.x - offset);
         rigidbody.MovePosition(position);
     }
 }
