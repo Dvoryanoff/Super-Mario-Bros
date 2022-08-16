@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour {
         if (IsGrounded) {
             GroundedMovement();
         }
+
         ApplyGravity();
 
     }
@@ -54,7 +55,6 @@ public class PlayerMovement : MonoBehaviour {
     private void ApplyGravity() {
         bool IsFalling = velocity.y < 0 || !Input.GetButton("Jump");
         float multiplier = IsFalling ? 2f : 1f;
-
         velocity.y = Mathf.Max(velocity.y, gravity / 2f);
         velocity.y += gravity * multiplier * Time.deltaTime;
 
@@ -63,11 +63,19 @@ public class PlayerMovement : MonoBehaviour {
     private void FixedUpdate() {
         Vector2 position = rigidbody.position;
         position += velocity * Time.deltaTime;
-
         Vector2 leftEdge = camera.ScreenToWorldPoint(Vector2.zero);
         Vector2 rightEdge = camera.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
         position.x = Mathf.Clamp(position.x, leftEdge.x + offset, rightEdge.x - offset);
         rigidbody.MovePosition(position);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.layer != LayerMask.NameToLayer("PowerUp")) {
+            if (transform.DotTest(collision.transform, Vector2.up)) {
+                velocity.y = 0;
+            }
+        }
+
     }
 }
 
