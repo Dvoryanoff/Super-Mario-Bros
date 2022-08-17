@@ -456,6 +456,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 635004585163765119, guid: 5ad60649af25bda478456217a1c63c77, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 5833835282760832935, guid: 5ad60649af25bda478456217a1c63c77, type: 3}
       propertyPath: m_Name
       value: UndergroundBrick
@@ -1915,7 +1919,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 635004585163765119, guid: 5ad60649af25bda478456217a1c63c77, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.y
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5833835282760832935, guid: 5ad60649af25bda478456217a1c63c77, type: 3}
       propertyPath: m_Name
@@ -4095,8 +4099,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 635004585163765119, guid: 5ad60649af25bda478456217a1c63c77, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 635004585163765119, guid: 5ad60649af25bda478456217a1c63c77, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.y
-      value: 12
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5833835282760832935, guid: 5ad60649af25bda478456217a1c63c77, type: 3}
       propertyPath: m_Name
@@ -5937,6 +5945,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6024342249061016136, guid: 5a1087d4776208144af63c6fa4b3fecd, type: 3}
       propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7534164477469364443, guid: 5a1087d4776208144af63c6fa4b3fecd, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7534164477469364443, guid: 5a1087d4776208144af63c6fa4b3fecd, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7619562915392565876, guid: 5a1087d4776208144af63c6fa4b3fecd, type: 3}
@@ -8436,6 +8452,14 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1786515956286121119, guid: 68f285dcceeb7644dbff93bf440a1b55, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 69
+      objectReference: {fileID: 0}
+    - target: {fileID: 1786515956286121119, guid: 68f285dcceeb7644dbff93bf440a1b55, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3982237552002615673, guid: 68f285dcceeb7644dbff93bf440a1b55, type: 3}
       propertyPath: m_Size.x
       value: 69
@@ -9049,10 +9073,6 @@ PrefabInstance:
     - target: {fileID: 700733726189006999, guid: 4f63b7a8a0633c34f91754e887f051cd, type: 3}
       propertyPath: m_Name
       value: Mario
-      objectReference: {fileID: 0}
-    - target: {fileID: 6920818812198897557, guid: 4f63b7a8a0633c34f91754e887f051cd, type: 3}
-      propertyPath: maxJumpHeight
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f63b7a8a0633c34f91754e887f051cd, type: 3}
