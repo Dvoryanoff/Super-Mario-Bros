@@ -21,6 +21,9 @@ public class PlayerMovement : MonoBehaviour {
         get; private set;
     }
 
+    public bool IsRunning => Mathf.Abs(velocity.x) > 0.25f || Mathf.Abs(inputAxis) > 0.2f;
+    public bool IsSliding => (inputAxis > 0f && velocity.x < 0f) || (inputAxis < 0 && velocity.x > 0);
+
     private void Awake() {
         rigidbody = GetComponent<Rigidbody2D>();
         camera = Camera.main;
