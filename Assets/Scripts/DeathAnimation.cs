@@ -51,7 +51,7 @@ public class DeathAnimation : MonoBehaviour {
         float duration = 3f;
 
         float jumpVelocity = 10f;
-        float gravity = 36f;
+        float gravity = -36f;
 
         Vector3 velocity = Vector3.up * jumpVelocity;
 

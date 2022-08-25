@@ -253,6 +253,7 @@ GameObject:
   - component: {fileID: 4474118483123020818}
   - component: {fileID: 8289711971015617902}
   - component: {fileID: 411561003621987954}
+  - component: {fileID: 3901420821911583587}
   m_Layer: 3
   m_Name: Mario
   m_TagString: Player
@@ -336,10 +337,24 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 700733726189006999}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f20971a2dae08f468ef784ec3d6a33a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   deathSprite: {fileID: 21300000, guid: 76c68f1f3ad00274bb5c18aad03d8e08, type: 3}
   spriteRenderer: {fileID: 700733724860698118}
+--- !u!114 &3901420821911583587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700733726189006999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e202eca0964edfd4fb0fa87ecb6ed1c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smallRenderer: {fileID: 4758713289016561468}
+  bigRenderer: {fileID: 8027761813497118066}
