@@ -5,7 +5,7 @@ public class PlayerMovement : MonoBehaviour {
     private new Rigidbody2D rigidbody;
     private new Camera camera;
     private float inputAxis;
-    private Vector2 velocity;
+    public Vector2 velocity;
     private float offset = 0.5f;
 
     [SerializeField] private float moveSpeed = 8f;
