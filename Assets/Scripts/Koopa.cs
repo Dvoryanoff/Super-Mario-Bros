@@ -1,18 +1,55 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Koopa : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+public class Koopa : MonoBehaviour {
+    [SerializeField] private Sprite shellSprite;
+    [SerializeField] private float shellSpeed = 12f;
+
+    private bool shelled;
+    private bool pushed;
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (!shelled && collision.gameObject.CompareTag("Player")) {
+
+            Player player = collision.gameObject.GetComponent<Player>();
+
+            if (collision.transform.DotTest(transform, Vector2.down)) {
+                EnterShell();
+            } else {
+                player.Hit();
+            }
+        }
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (shelled && other.CompareTag("Player")) {
+            if (!pushed) {
+                Vector2 direction = new(transform.position.x - other.transform.position.x, 0f);
+                PushShell(direction);
+
+            } else {
+                Player player = other.GetComponent<Player>();
+                player.Hit();
+            }
+        }
+
+    }
+
+    private void PushShell(Vector2 direction) {
+        pushed = true;
+        GetComponent<Rigidbody2D>().isKinematic = false;
+        EntityMovement movement = GetComponent<EntityMovement>();
+        movement.direction = direction.normalized;
+        movement.speed = shellSpeed;
+        movement.enabled = true;
+
+        gameObject.layer = LayerMask.NameToLayer("Shell");
+    }
+
+    private void EnterShell() {
+        shelled = true;
+        GetComponent<EntityMovement>().enabled = false;
+        GetComponent<AnimatedSprite>().enabled = false;
+        GetComponent<SpriteRenderer>().sprite = shellSprite;
     }
 }
