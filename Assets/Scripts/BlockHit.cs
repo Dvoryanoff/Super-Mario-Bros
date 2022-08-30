@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class BlockHit : MonoBehaviour {
 
+    [SerializeField] private GameObject item;
+
     public int maxHints = -1;
     public Sprite emptyBlock;
 
@@ -18,11 +20,16 @@ public class BlockHit : MonoBehaviour {
     private void Hit() {
 
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.enabled = true;
 
         maxHints--;
 
         if (maxHints == 0) {
             spriteRenderer.sprite = emptyBlock;
+        }
+
+        if (item != null) {
+            Instantiate(item, transform.position, Quaternion.identity);
         }
 
         StartCoroutine(Animate());

@@ -24,10 +24,10 @@ public class Goomba : MonoBehaviour {
     }
 
     private void Flatten() {
-        //GetComponent<Rigidbody2D>().isKinematic = true;
-        GetComponent<Collider2D>().enabled = false;
+        GetComponent<Rigidbody2D>().isKinematic = true;
         GetComponent<EntityMovement>().enabled = false;
         GetComponent<AnimatedSprite>().enabled = false;
+        GetComponent<Collider2D>().enabled = false;
         GetComponent<SpriteRenderer>().sprite = flatSprite;
 
         Destroy(gameObject, 0.5f);
