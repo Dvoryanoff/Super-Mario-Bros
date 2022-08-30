@@ -18,9 +18,9 @@ public class DeathAnimation : MonoBehaviour {
 
     private void UpdateSprite() {
         spriteRenderer.enabled = true;
-        spriteRenderer.sortingOrder = 100;
+        spriteRenderer.sortingOrder = 10;
 
-        if (spriteRenderer != null) {
+        if (deathSprite != null) {
             spriteRenderer.sprite = deathSprite;
         }
 

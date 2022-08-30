@@ -31,6 +31,8 @@ public class Koopa : MonoBehaviour {
                 Player player = other.GetComponent<Player>();
                 player.Hit();
             }
+        } else if (!shelled && other.gameObject.layer == LayerMask.NameToLayer("Shell")) {
+            Hit();
         }
 
     }
@@ -51,5 +53,17 @@ public class Koopa : MonoBehaviour {
         GetComponent<EntityMovement>().enabled = false;
         GetComponent<AnimatedSprite>().enabled = false;
         GetComponent<SpriteRenderer>().sprite = shellSprite;
+    }
+
+    private void Hit() {
+        GetComponent<AnimatedSprite>().enabled = false;
+        GetComponent<DeathAnimation>().enabled = true;
+        Destroy(gameObject, 3f);
+    }
+
+    private void OnBecameInvisible() {
+        if (pushed) {
+            Destroy(gameObject);
+        }
     }
 }

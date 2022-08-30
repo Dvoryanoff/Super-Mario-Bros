@@ -17,6 +17,12 @@ public class Goomba : MonoBehaviour {
 
     }
 
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Shell")) {
+            Hit();
+        }
+    }
+
     private void Flatten() {
         //GetComponent<Rigidbody2D>().isKinematic = true;
         GetComponent<Collider2D>().enabled = false;
@@ -25,5 +31,11 @@ public class Goomba : MonoBehaviour {
         GetComponent<SpriteRenderer>().sprite = flatSprite;
 
         Destroy(gameObject, 0.5f);
+    }
+
+    private void Hit() {
+        GetComponent<DeathAnimation>().enabled = true;
+        GetComponent<AnimatedSprite>().enabled = false;
+        Destroy(gameObject, 3f);
     }
 }
