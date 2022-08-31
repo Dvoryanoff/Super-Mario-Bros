@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7050760442004169265}
   - component: {fileID: 3428313943471687208}
   - component: {fileID: 1874683161363878486}
+  - component: {fileID: -4144993065634302399}
   m_Layer: 6
   m_Name: StarMan
   m_TagString: Untagged
@@ -75,8 +76,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1872821879
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ab62670f351539b44bc54048cbcfd123, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -178,3 +179,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0c03a04e5f00a9428b616843133a259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-4144993065634302399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8836041551851322553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75f8ef604f9331546a1a0b2181a7f5bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 3

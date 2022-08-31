@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private void AddLife() {
+    public void AddLife() {
         lives++;
     }
 }

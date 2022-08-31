@@ -21,8 +21,9 @@ public class PlayerMovement : MonoBehaviour {
         get; private set;
     }
 
-    public bool IsRunning => Mathf.Abs(velocity.x) > 0.25f || Mathf.Abs(inputAxis) > 0.2f;
+    public bool IsRunning => Mathf.Abs(velocity.x) > 0.25f || Mathf.Abs(inputAxis) > 0.25f;
     public bool IsSliding => (inputAxis > 0f && velocity.x < 0f) || (inputAxis < 0 && velocity.x > 0);
+    public bool falling => velocity.y < 0f && !IsGrounded;
 
     private void Awake() {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -68,8 +69,8 @@ public class PlayerMovement : MonoBehaviour {
     private void ApplyGravity() {
         bool IsFalling = velocity.y < 0 || !Input.GetButton("Jump");
         float multiplier = IsFalling ? 2f : 1f;
-        velocity.y = Mathf.Max(velocity.y, gravity / 2f);
         velocity.y += gravity * multiplier * Time.deltaTime;
+        velocity.y = Mathf.Max(velocity.y, gravity / 2f);
 
     }
 
