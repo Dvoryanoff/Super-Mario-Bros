@@ -3,20 +3,15 @@ using UnityEngine;
 
 public class EntityMovement : MonoBehaviour {
 
-    public float speed = 0f;
-    private Vector2 initialDirection = Vector2.left;
+    public float speed = 1f;
+    public Vector2 direction = Vector2.left;
 
     private new Rigidbody2D rigidbody;
     private Vector2 velocity;
-    public Vector2 direction;
 
     private void Awake() {
         rigidbody = GetComponent<Rigidbody2D>();
         enabled = false;
-    }
-
-    private void Start() {
-        direction = initialDirection;
     }
 
     private void OnBecameVisible() {

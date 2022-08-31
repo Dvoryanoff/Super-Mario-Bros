@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 557236708048531220}
   - component: {fileID: 557236708048531223}
   - component: {fileID: 557236708048531222}
-  - component: {fileID: 3396737616959693826}
   - component: {fileID: 8075448578345668638}
   - component: {fileID: 7145405704473051959}
+  - component: {fileID: 5381459679775575074}
   m_Layer: 7
   m_Name: Goomba
   m_TagString: Untagged
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1459255555
-  m_SortingLayer: -4
+  m_SortingLayer: 3
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 329724a63c8b8cd419cf1db0ff348557, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -143,20 +143,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 329724a63c8b8cd419cf1db0ff348557, type: 3}
   - {fileID: 21300000, guid: 2a502b1065597ad4abcd5a15a54f10e2, type: 3}
   frameRate: 0.25
---- !u!114 &3396737616959693826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 557236708048531241}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10ba241d7fb8b7549aeb1311d94f761a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  direction: {x: 0, y: 0}
 --- !u!114 &8075448578345668638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,3 +170,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathSprite: {fileID: 0}
   spriteRenderer: {fileID: 557236708048531221}
+--- !u!114 &5381459679775575074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557236708048531241}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10ba241d7fb8b7549aeb1311d94f761a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  direction: {x: -1, y: 0}
