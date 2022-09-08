@@ -1,6 +1,8 @@
+using extensions;
 using UnityEngine;
 
-public class Koopa : MonoBehaviour {
+
+public class Koopa : GroundMob {
     [SerializeField] private Sprite shellSprite;
     [SerializeField] private float shellSpeed = 12f;
 
@@ -25,7 +27,7 @@ public class Koopa : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D other) {
         if (shelled && other.CompareTag("Player")) {
             if (!pushed) {
-                Vector2 direction = new(transform.position.x - other.transform.position.x, 0f);
+                Vector2 direction = new Vector2(transform.position.x - other.transform.position.x, 0f);
                 PushShell(direction);
 
             } else {
@@ -60,7 +62,7 @@ public class Koopa : MonoBehaviour {
         GetComponent<SpriteRenderer>().sprite = shellSprite;
     }
 
-    private void Hit() {
+    protected override void Hit() {
         GetComponent<AnimatedSprite>().enabled = false;
         GetComponent<DeathAnimation>().enabled = true;
         Destroy(gameObject, 3f);
@@ -68,6 +70,7 @@ public class Koopa : MonoBehaviour {
 
     private void OnBecameInvisible() {
         if (pushed) {
+            Debug.Log($"Test11");
             Destroy(gameObject);
         }
     }

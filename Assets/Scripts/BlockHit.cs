@@ -1,65 +1,82 @@
+using System;
 using System.Collections;
+using extensions;
 using UnityEngine;
 
-public class BlockHit : MonoBehaviour {
 
-    [SerializeField] private GameObject item;
+public class BlockHit : LevelElement {
+	[SerializeField] private GameObject item;
 
-    public int maxHints = -1;
-    public Sprite emptyBlock;
 
-    private bool animating;
-    private void OnCollisionEnter2D(Collision2D collision) {
-        if (!animating && maxHints != 0 && collision.gameObject.CompareTag("Player")) {
-            if (collision.transform.DotTest(transform, Vector2.up)) {
-                Hit();
-            }
-        }
-    }
+	public static event Action <Vector2Int> OnBlockHit;
 
-    private void Hit() {
 
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.enabled = true;
+	private Transform myTransform;
+	public  Sprite    emptyBlock;
 
-        maxHints--;
 
-        if (maxHints == 0) {
-            spriteRenderer.sprite = emptyBlock;
-        }
+	public  int  maxHits = -1;
+	private bool animating;
 
-        if (item != null) {
-            Instantiate(item, transform.position, Quaternion.identity);
-        }
 
-        StartCoroutine(Animate());
+	private void Awake () {
+		myTransform = transform;
+	}
 
-    }
+	private void OnCollisionEnter2D (Collision2D collision) {
+		bool isHitByPlayer = collision.gameObject.CompareTag("Player");
+		bool canBeHit      = animating == false && maxHits != 0;
 
-    private IEnumerator Animate() {
-        animating = true;
+		if (canBeHit == false || isHitByPlayer == false)
+			return;
 
-        Vector3 restingPosition = transform.localPosition;
-        Vector3 animatedPosition = restingPosition + Vector3.up * 0.5f;
-        yield return Move(restingPosition, animatedPosition);
-        yield return Move(animatedPosition, restingPosition);
+		bool validHit = collision.transform.DotTest(myTransform, Vector2.up);
 
-        animating = false;
+		if (validHit)
+			Hit();
+	}
 
-    }
+	private void Hit () {
+		SpriteRenderer spriteRenderer = GetComponent <SpriteRenderer>();
+		spriteRenderer.enabled = true;
 
-    private IEnumerator Move(Vector3 from, Vector3 to) {
+		maxHits--;
 
-        float elapsed = 0f;
-        float duration = 0.125f;
+		if (maxHits == 0)
+			spriteRenderer.sprite = emptyBlock;
 
-        while (elapsed < duration) {
-            float t = elapsed / duration;
-            transform.localPosition = Vector3.Lerp(from, to, t);
-            elapsed += Time.deltaTime;
+		if (item != null)
+			Instantiate(item, myTransform.position, Quaternion.identity);
 
-            yield return null;
-            transform.localPosition = to;
-        }
-    }
+		StartCoroutine(Animate());
+
+		OnBlockHit?.Invoke(Position);
+	}
+
+	private IEnumerator Animate () {
+		animating = true;
+
+		Vector3 restingPosition  = myTransform.localPosition;
+		Vector3 animatedPosition = restingPosition + Vector3.up * 0.5f;
+		yield return Move(restingPosition,  animatedPosition);
+		yield return Move(animatedPosition, restingPosition);
+
+		animating = false;
+	}
+
+	private IEnumerator Move (Vector3 from, Vector3 to) {
+		const float duration = 0.125f;
+
+		float elapsed = 0f;
+
+		while (elapsed < duration) {
+			float t = elapsed / duration;
+			myTransform.localPosition =  Vector3.Lerp(from, to, t);
+			elapsed                   += Time.deltaTime;
+
+			yield return null;
+
+			myTransform.localPosition = to;
+		}
+	}
 }
