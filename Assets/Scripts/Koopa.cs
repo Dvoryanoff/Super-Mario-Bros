@@ -1,7 +1,6 @@
 using extensions;
 using UnityEngine;
 
-
 public class Koopa : GroundMob {
     [SerializeField] private Sprite shellSprite;
     [SerializeField] private float shellSpeed = 12f;
