@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using superMarioBros.extensions;
 using UnityEngine;
+using Zenject;
 
 
 namespace superMarioBros.gameplay {
@@ -11,7 +12,7 @@ namespace superMarioBros.gameplay {
 
 		public static event Action <Vector2Int> OnBlockHit;
 
-
+		
 		private Transform myTransform;
 		public  Sprite    emptyBlock;
 
@@ -20,6 +21,14 @@ namespace superMarioBros.gameplay {
 		private bool animating;
 
 
+		private GameManager gameManager;
+
+
+		[Inject]
+		private void Inject (GameManager pGameManager) {
+			gameManager = pGameManager;
+		}
+		
 		private void Awake () {
 			myTransform = transform;
 		}
@@ -46,8 +55,10 @@ namespace superMarioBros.gameplay {
 			if (maxHits == 0)
 				spriteRenderer.sprite = emptyBlock;
 
-			if (item != null)
+			if (item != null) {
+				gameManager.AddCoin();
 				Instantiate(item, myTransform.position, Quaternion.identity);
+			}
 
 			StartCoroutine(Animate());
 
