@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour {
 
     }
 
-    private void LoadLevel(int world, int stage) {
+    public void LoadLevel(int world, int stage) {
         this.world = world;
         this.stage = stage;
         SceneManager.LoadScene($"{world}-{stage}");

@@ -4445,10 +4445,6 @@ PrefabInstance:
       propertyPath: castle
       value: 
       objectReference: {fileID: 730195686}
-    - target: {fileID: -3321788638981755189, guid: 2905f85608c28d2409b262becd0f872a, type: 3}
-      propertyPath: nextStage
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 7229097814724701, guid: 2905f85608c28d2409b262becd0f872a, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -7233,10 +7229,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1151177763}
     m_Modifications:
-    - target: {fileID: -130708218483560589, guid: efacbe4031c0b11449e83704113550ba, type: 3}
-      propertyPath: connection
-      value: 
-      objectReference: {fileID: 776309728}
     - target: {fileID: 5203235208091270732, guid: efacbe4031c0b11449e83704113550ba, type: 3}
       propertyPath: m_Name
       value: Pipe (4)
@@ -11579,11 +11571,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 700733726189006996, guid: 4f63b7a8a0633c34f91754e887f051cd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 165.25
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 700733726189006996, guid: 4f63b7a8a0633c34f91754e887f051cd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.23
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 700733726189006996, guid: 4f63b7a8a0633c34f91754e887f051cd, type: 3}
       propertyPath: m_LocalPosition.z
