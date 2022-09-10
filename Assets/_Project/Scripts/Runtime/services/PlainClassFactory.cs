@@ -1,4 +1,5 @@
-﻿using Zenject;
+﻿using System.Collections.Generic;
+using Zenject;
 
 
 namespace superMarioBros.services {
@@ -12,6 +13,10 @@ namespace superMarioBros.services {
 
 		public T Create<T> () where T : class, new() {
 			return container.Instantiate <T>();
+		}
+
+		public T Create<T> (IEnumerable <object> @params) where T : class, new() {
+			return container.Instantiate <T>(@params);
 		}
 	}
 }

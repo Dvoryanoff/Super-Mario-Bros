@@ -1,6 +1,5 @@
 using DG.Tweening;
 using superMarioBros.services;
-using UnityEngine.SceneManagement;
 using Zenject;
 
 
@@ -31,8 +30,6 @@ namespace superMarioBros.gameplay {
 		private void NewGame () {
 			Lives = 3; // TODO move to config
 			Coins = 0; // TODO move to currency service
-
-			levelLoader.LoadLevel(1, 1);
 		}
 
 		public void NextLevel () {
@@ -52,8 +49,8 @@ namespace superMarioBros.gameplay {
 					       return;
 				       }
 
+				       levelLoader.UnloadLevel();
 				       levelLoader.LoadLevel(World, Stage);
-				       SceneManager.LoadScene($"{World.ToString()}-{Stage.ToString()}");
 			       });
 		}
 

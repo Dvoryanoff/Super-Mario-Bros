@@ -21,7 +21,7 @@ namespace superMarioBros.gameStateMachine {
 		}
 
 		public void Initialize () {
-			Enter<BootstrapState>();
+			Enter <BootstrapState>();
 		}
 	}
 }

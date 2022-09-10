@@ -5,6 +5,8 @@ namespace superMarioBros.gameStateMachine.states {
 	public class BootstrapState : GameStateBase {
 		public override void OnEnter () {
 			Debug.LogWarning("BOOTSTRAP");
+			
+			stateMachine.Enter<GameplayState>();
 		}
 	}
 }
