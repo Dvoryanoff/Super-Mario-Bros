@@ -21,6 +21,3 @@ namespace superMarioBros.installers {
 		}
 	}
 }
-
-
-// TODO Application.targetFrameRate = 60;
