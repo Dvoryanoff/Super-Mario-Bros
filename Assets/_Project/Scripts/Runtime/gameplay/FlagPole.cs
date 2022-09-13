@@ -1,9 +1,11 @@
 using System.Collections;
+using superMarioBros.assetsManagement;
 using superMarioBros.services;
 using UnityEngine;
 using Zenject;
 
 
+// TODO create Level Sequence
 namespace superMarioBros.gameplay {
 	public class FlagPole : MonoBehaviour {
 		[SerializeField] private Transform flag;
@@ -24,7 +26,7 @@ namespace superMarioBros.gameplay {
 		}
 
 		private void OnTriggerEnter2D (Collider2D other) {
-			if (other.CompareTag(nameof(Player))) {
+			if (other.CompareTag(nameof(Mario))) {
 				StartCoroutine(MoveTo(flag, poleBottom.position));
 				StartCoroutine(LevelCompleteSequence(other.transform));
 			}
@@ -41,7 +43,7 @@ namespace superMarioBros.gameplay {
 
 			yield return new WaitForSeconds(2f);
 
-			levelLoader.LoadLevel(nextWorld, nextStage);
+			levelLoader.LoadLevel();
 		}
 
 		private IEnumerator MoveTo (Transform subject, Vector3 destination) {

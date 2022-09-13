@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using superMarioBros.extensions;
 using UnityEngine;
-using Zenject;
 
 
 namespace superMarioBros.gameplay {
@@ -24,10 +23,10 @@ namespace superMarioBros.gameplay {
 		private GameManager gameManager;
 
 
-		[Inject]
-		private void Inject (GameManager pGameManager) {
-			gameManager = pGameManager;
-		}
+		// [Inject]
+		// private void Inject (GameManager pGameManager) {
+		// 	gameManager = pGameManager;
+		// }
 		
 		private void Awake () {
 			myTransform = transform;

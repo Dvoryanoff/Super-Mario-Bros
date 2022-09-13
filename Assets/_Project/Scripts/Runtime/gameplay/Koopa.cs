@@ -13,13 +13,13 @@ namespace superMarioBros.gameplay {
         private void OnCollisionEnter2D(Collision2D collision) {
             if (!shelled && collision.gameObject.CompareTag("Player")) {
 
-                Player player = collision.gameObject.GetComponent<Player>();
-                if (player.starPower) {
+                Mario mario = collision.gameObject.GetComponent<Mario>();
+                if (mario.starPower) {
                     Hit();
                 } else if (collision.transform.DotTest(transform, Vector2.down)) {
                     EnterShell();
                 } else {
-                    player.Hit();
+                    mario.Hit();
                 }
             }
 
@@ -32,12 +32,12 @@ namespace superMarioBros.gameplay {
                     PushShell(direction);
 
                 } else {
-                    Player player = other.GetComponent<Player>();
+                    Mario mario = other.GetComponent<Mario>();
 
-                    if (player.starPower) {
+                    if (mario.starPower) {
                         Hit();
                     } else
-                        player.Hit();
+                        mario.Hit();
                 }
             } else if (!shelled && other.gameObject.layer == LayerMask.NameToLayer("Shell")) {
                 Hit();

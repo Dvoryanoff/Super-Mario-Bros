@@ -1,5 +1,6 @@
-﻿using superMarioBros.services;
-using UnityEngine;
+﻿using superMarioBros.assetsManagement;
+using superMarioBros.services;
+using superMarioBros.signals;
 using Zenject;
 
 
@@ -7,19 +8,32 @@ namespace superMarioBros.gameStateMachine.states {
 	public class GameplayState : GameStateBase {
 		private LevelLoader       levelLoader;
 		private GameObjectFactory gameObjectFactory;
+		private SignalBus         signalBus;
 
 
 		[Inject]
-		private void Inject (LevelLoader levelLoader, GameObjectFactory gameObjectFactory) {
-			this.levelLoader       = levelLoader;
-			this.gameObjectFactory = gameObjectFactory;
+		private void Inject (SignalBus pSignalBus, LevelLoader pLevelLoader) {
+			signalBus   = pSignalBus;
+			levelLoader = pLevelLoader;
 		}
 
 		public override void OnEnter () {
-			levelLoader.LoadLevel(1, 1); // TODO move to PlayerData \ User \ SaveData wtvr
+			levelLoader.LoadLevel();
 
-			GameObject marioProto = Resources.Load("Prefabs/Mario") as GameObject;
-			gameObjectFactory.Create(marioProto); // FIXME what
+			signalBus.Subscribe <GameplaySignal.PlayerDied>(OnPlayerDied);
+		}
+
+		public override void OnExit () {
+			signalBus.Unsubscribe <GameplaySignal.PlayerDied>(OnPlayerDied);
+		}
+
+		private void OnPlayerDied () {
+			RestartLevel();
+		}
+
+		private void RestartLevel () {
+			levelLoader.UnloadLevel();
+			levelLoader.LoadLevel();
 		}
 	}
 }

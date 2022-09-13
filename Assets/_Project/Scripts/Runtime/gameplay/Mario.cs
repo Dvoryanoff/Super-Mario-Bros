@@ -1,16 +1,23 @@
 using System.Collections;
+using superMarioBros.extensions;
+using superMarioBros.signals;
 using UnityEngine;
 using Zenject;
 
 
 namespace superMarioBros.gameplay {
-	public class Player : MonoBehaviour {
+	public class Mario : MonoBehaviour {
+		#region Set in Inspector
 		[SerializeField] private PlayerSpriteRenderer smallRenderer;
 		[SerializeField] private PlayerSpriteRenderer bigRenderer;
-		private                  PlayerSpriteRenderer activeRenderer;
-		private                  CapsuleCollider2D    capsuleCollider;
+		#endregion Set in Inspector
+
+
+		private PlayerSpriteRenderer activeRenderer;
+		private CapsuleCollider2D    capsuleCollider;
 
 		private DeathAnimation deathAnimation;
+
 
 		public bool small     => smallRenderer.enabled;
 		public bool big       => bigRenderer.enabled;
@@ -18,17 +25,28 @@ namespace superMarioBros.gameplay {
 		public bool starPower {get; private set;}
 
 
-		private GameManager gameManager;
+		private SignalBus signalBus;
+
 
 		[Inject]
-		private void Inject (GameManager pGameManager) {
-			gameManager = pGameManager;
+		private void Inject (SignalBus pSignalBus) {
+			signalBus = pSignalBus;
 		}
 
 		private void Awake () {
 			deathAnimation  = GetComponent <DeathAnimation>();
 			capsuleCollider = GetComponent <CapsuleCollider2D>();
 			activeRenderer  = smallRenderer;
+
+			signalBus.Subscribe <GameplaySignal.LevelUnloaded>(OnLevelUnloaded);
+		}
+
+		private void OnDestroy () {
+			signalBus.Unsubscribe <GameplaySignal.LevelUnloaded>(OnLevelUnloaded);
+		}
+
+		public void SetPosition (Vector2Int to) {
+			transform.position = to.ToVector3();
 		}
 
 		public void Hit () {
@@ -46,8 +64,7 @@ namespace superMarioBros.gameplay {
 			smallRenderer.enabled  = false;
 			deathAnimation.enabled = true;
 
-			Debug.Log($"DEATH");
-			gameManager.ResetLevel();
+			deathAnimation.OnAnimationFinished += () => signalBus.Fire <GameplaySignal.PlayerDied>();
 		}
 
 		private void Shrink () {
@@ -111,6 +128,14 @@ namespace superMarioBros.gameplay {
 
 			activeRenderer.spriteRenderer.color = Color.white;
 			starPower                           = false;
+		}
+
+		private void OnLevelUnloaded () {
+			Discard();
+		}
+
+		private void Discard () {
+			Destroy(gameObject);
 		}
 	}
 }

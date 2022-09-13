@@ -7,10 +7,10 @@ namespace superMarioBros.gameplay {
 		private GameManager gameManager;
 
 
-		[Inject]
-		private void Inject (GameManager pGameManager) {
-			gameManager = pGameManager;
-		}
+		// [Inject]
+		// private void Inject (GameManager pGameManager) {
+		// 	gameManager = pGameManager;
+		// }
 
 
 		private void OnTriggerEnter2D (Collider2D other) {

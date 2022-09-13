@@ -11,7 +11,7 @@ namespace superMarioBros.gameplay {
         [SerializeField] private Vector3   exitDirection  = Vector3.zero;
 
         private void OnTriggerStay2D(Collider2D other) {
-            if (connection != null && other.CompareTag(nameof(Player))) {
+            if (connection != null && other.CompareTag(nameof(Mario))) {
                 if (Input.GetKeyDown(enterKeyKode)) {
                     StartCoroutine(Enter(other.transform));
                 }

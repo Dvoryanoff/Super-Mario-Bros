@@ -14,7 +14,8 @@ namespace superMarioBros.installers {
 			foreach (Config config in configs) {
 				config.Initialize();
 				
-				Container.BindInstance(config)
+				Container.Bind(config.GetType())
+				         .FromInstance(config)
 				         .AsSingle();
 			}
 		}

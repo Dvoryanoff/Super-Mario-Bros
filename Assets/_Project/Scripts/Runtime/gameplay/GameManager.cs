@@ -1,5 +1,5 @@
 using DG.Tweening;
-using superMarioBros.services;
+using superMarioBros.assetsManagement;
 using Zenject;
 
 
@@ -11,9 +11,8 @@ namespace superMarioBros.gameplay {
 
 		private LevelLoader levelLoader;
 
-
-		public int World => levelLoader.LoadedLevel.World;
-		public int Stage => levelLoader.LoadedLevel.Stage;
+		// public int World => levelLoader.LoadedLevel.World;
+		// public int Stage => levelLoader.LoadedLevel.Stage;
 
 		private bool IsGameOver => Lives <= 0;
 
@@ -32,9 +31,9 @@ namespace superMarioBros.gameplay {
 			Coins = 0; // TODO move to currency service
 		}
 
-		public void NextLevel () {
-			levelLoader.LoadLevel(World, Stage + 1);
-		}
+		// public void NextLevel () {
+		// 	levelLoader.LoadLevel(World, Stage + 1);
+		// }
 
 		public void ResetLevel () {
 			DOTween.Sequence()
@@ -50,7 +49,7 @@ namespace superMarioBros.gameplay {
 				       }
 
 				       levelLoader.UnloadLevel();
-				       levelLoader.LoadLevel(World, Stage);
+				       levelLoader.LoadLevel();
 			       });
 		}
 

@@ -1,30 +1,66 @@
 ﻿using System;
 using superMarioBros.gameplay;
-using UnityEngine.SceneManagement;
+using superMarioBros.levels;
+using superMarioBros.services;
+using superMarioBros.signals;
+using UnityEngine;
+using Zenject;
 
 
-namespace superMarioBros.services {
+namespace superMarioBros.assetsManagement {
 	public class LevelLoader {
-		private string    sceneNameCache;
-		public  LevelData LoadedLevel;
+		private ILevel loadedLevel;
 
 
-		public void LoadLevel (int world, int stage) {
-			sceneNameCache = $"{world}-{stage}";
-			SceneManager.LoadScene(sceneNameCache, LoadSceneMode.Additive);
+		private readonly SignalBus         signalBus;
+		private readonly GameObjectFactory gameObjectFactory;
+		private readonly LevelSequence     levelSequence;
 
-			LoadedLevel = new LevelData(world, stage);
+
+		public ILevel LoadedLevel => loadedLevel;
+
+
+		public LevelLoader (SignalBus signalBus, GameObjectFactory gameObjectFactory, LevelSequence levelSequence) {
+			this.signalBus         = signalBus;
+			this.levelSequence     = levelSequence;
+			this.gameObjectFactory = gameObjectFactory;
+		}
+
+		public void LoadLevel () {
+			const int world = 1; // TODO get from player persistent data
+			const int stage = 1; // TODO get from player persistent data
+
+			loadedLevel = gameObjectFactory.Create(levelSequence[world, stage]);
+
+			SpawnPlayer(loadedLevel.PlayerSpawnLocation);
+
+			signalBus.Fire(new GameplaySignal.LevelLoaded(loadedLevel));
 		}
 
 		public void UnloadLevel () {
-			if (string.IsNullOrEmpty(sceneNameCache))
-				throw new NullReferenceException("No Level was previously loaded.");
+			if (LoadedLevel == null)
+				throw new Exception("No Level was previously loaded.");
 
-			SceneManager.UnloadSceneAsync(sceneNameCache);
-			sceneNameCache = default;
-			LoadedLevel    = default;
+			loadedLevel.Discard();
+			loadedLevel = null;
+
+			signalBus.Fire <GameplaySignal.LevelUnloaded>();
+		}
+
+		private void SpawnPlayer (Vector2Int at) {
+			// TODO move method 
+
+
+			Mario marioProto = Resources.Load <Mario>("Prefabs/Mario"); // TODO move to addressable
+			Mario mario      = gameObjectFactory.Create(marioProto);
+
+			mario.SetPosition(to: at);
+			
+			signalBus.Fire(new GameplaySignal.PlayerSpawned(mario));
 		}
 	}
+
+	public class LevelEntitySpawner {}
 }
 
 

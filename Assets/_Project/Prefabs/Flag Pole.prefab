@@ -194,6 +194,8 @@ MonoBehaviour:
   poleBottom: {fileID: 6343101213273600716}
   castle: {fileID: 0}
   speed: 6
+  nextWorld: 1
+  nextStage: 2
 --- !u!1 &8810225409655970745
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,6 +285,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 7229097814724701}
     m_Modifications:
     - target: {fileID: 1536816164398169509, guid: 7e2ac029040db3241a6285f7034a96ba, type: 3}
@@ -334,6 +337,7 @@ PrefabInstance:
       value: Block
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e2ac029040db3241a6285f7034a96ba, type: 3}
 --- !u!4 &3915613183363419691 stripped
 Transform:

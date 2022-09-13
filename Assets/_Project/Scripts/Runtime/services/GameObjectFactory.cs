@@ -30,15 +30,15 @@ namespace superMarioBros.services {
 
 
 		public TComponent Create<TComponent> (TComponent original) where TComponent : Component {
-			return Create <TComponent>(original, Vector3.zero, Quaternion.identity, null);
+			return Create(original, Vector3.zero, Quaternion.identity, null);
 		}
 
 		public TComponent Create<TComponent> (TComponent original, Transform parent) where TComponent : Component {
-			return Create <TComponent>(original, Vector3.zero, Quaternion.identity, parent);
+			return Create(original, Vector3.zero, Quaternion.identity, parent);
 		}
 
 		public TComponent Create<TComponent> (TComponent original, Vector3 position, Quaternion rotation) where TComponent : Component {
-			return Create <TComponent>(original, position, rotation, null);
+			return Create(original, position, rotation, null);
 		}
 
 		public TComponent Create<TComponent> (TComponent original, Vector3 position, Quaternion rotation, Transform parent) where TComponent : Component {

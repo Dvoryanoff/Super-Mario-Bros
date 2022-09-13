@@ -16,10 +16,10 @@ namespace superMarioBros.gameplay {
 		private GameManager gameManager;
 
 		
-		[Inject]
-		private void Inject (GameManager pGameManager) {
-			gameManager = pGameManager;
-		}
+		// [Inject]
+		// private void Inject (GameManager pGameManager) {
+		// 	gameManager = pGameManager;
+		// }
 
 		private void OnTriggerEnter2D (Collider2D other) {
 			if (other.CompareTag("Player")) {
@@ -33,13 +33,13 @@ namespace superMarioBros.gameplay {
 					gameManager.AddCoin();
 					break;
 				case Type.MagicMushroom:
-					player.GetComponent <Player>().Grow();
+					player.GetComponent <Mario>().Grow();
 					break;
 				case Type.ExtraLife:
 					gameManager.AddLife();
 					break;
 				case Type.StarPower:
-					player.GetComponent <Player>().StarPower();
+					player.GetComponent <Mario>().StarPower();
 					break;
 			}
 

@@ -8,14 +8,14 @@ namespace superMarioBros.gameplay {
 
 		private void OnCollisionEnter2D(Collision2D collision) {
 			if (collision.gameObject.CompareTag("Player")) {
-				Player player = collision.gameObject.GetComponent<Player>();
+				Mario mario = collision.gameObject.GetComponent<Mario>();
 
-				if (player.starPower) {
+				if (mario.starPower) {
 					Hit();
 				} else if (collision.transform.DotTest(transform, Vector2.down)) {
 					Flatten();
 				} else {
-					player.Hit();
+					mario.Hit();
 				}
 			}
 		}
